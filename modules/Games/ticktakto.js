@@ -30,6 +30,10 @@ const board = document.createElement("div");
         <h2 id="player2Score">0</h2>
     </div>
     </div>
+
+
+
+
     `
 
 

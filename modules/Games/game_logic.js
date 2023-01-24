@@ -1,16 +1,3 @@
-/**
- * I made a mistake in the last lesson and I'm fixing it here.
- * 
- * 
- * Pass By Value -> Primitive Types (Number, String, Boolean)
- *      - When you pass a primitive type to a function, you are passing a copy of the value      
- *
- * Pass By Reference -> Objects (Array, Object, Function)
- *      - When you pass an object to a function, you are passing a reference to the object
- * 
- * 
- */
-
 // this will be the functions we use to build the game
 function reset() {
     // Reset the game
@@ -113,61 +100,67 @@ function resetAll(){
 
 
 export function RunGame(){
-    // Game Logic
-let counter = 0; // Keep track of the number of turns
+    
+        // Game Logic
+    let counter = 0; // Keep track of the number of turns
 
-let p1= {
-    name: "Player 1",
-    points: 0
-};
+    let p1= {
+        name: "Player 1",
+        points: 0
+    };
 
-let p2 = {
-    name: "Player 2",
-    points: 0
-};
+    let p2 = {
+        name: "Player 2",
+        points: 0
+    };
 
-let buttonArray = document.querySelectorAll(".btn"); // Get all the buttons
+    let buttonArray = document.querySelectorAll(".btn"); // Get all the buttons
 
-let coArray = []; // Create an array to store the coordinates of the buttons
-buttonArray.forEach((button) => {
-    coArray.push(button); // Push the buttons to the array
-});
+    let coArray = []; // Create an array to store the coordinates of the buttons
+    buttonArray.forEach((button) => {
+        coArray.push(button); // Push the buttons to the array
+    });
 
-let matrix = ArrayToMatrix(coArray, Math.floor(Math.sqrt(coArray.length))); // Convert the array to a matrix
+    let matrix = ArrayToMatrix(coArray, Math.floor(Math.sqrt(coArray.length))); // Convert the array to a matrix
 
-console.log(matrix);
+    console.log(matrix);
 
 
-for (let i = 0; i < buttonArray.length; i++) { // Loop through the buttons and add an event listener to each one
 
-    buttonArray[i].addEventListener("click", 
-    function() {
-        let symbol;
-        if(counter % 2 == 0 && buttonArray[i].textContent == "") {
-            buttonArray[i].textContent = "X";
-            counter++;     
-            symbol = 'X';
-        }else if(counter % 2 != 0 && buttonArray[i].textContent == "") {
-            buttonArray[i].textContent = "O";
-            counter++;
-            symbol = 'O';
-        }else{
-            alert("This button is already clicked!");
+    for (let i = 0; i < buttonArray.length; i++) { // Loop through the buttons and add an event listener to each one
+
+        buttonArray[i].addEventListener("click", 
+        function() {
+            let symbol;
+            if(counter % 2 == 0 && buttonArray[i].textContent == "") {
+                buttonArray[i].textContent = "X";
+                counter++;     
+                symbol = 'X';
+            }else if(counter % 2 != 0 && buttonArray[i].textContent == "") {
+                buttonArray[i].textContent = "O";
+                counter++;
+                symbol = 'O';
+            }else{
+                alert("This button is already clicked!");
+            }
+
+            if(checkForWin(matrix, symbol)){
+                alert(`${symbol} has won`)
+                incrementScore(symbol);
+                reset();
+            }
+
+            if(checkforTie(coArray)){
+                alert("no body won it was a Tie!")
+            }
+
+        });
         }
 
-        if(checkForWin(matrix, symbol)){
-            alert(`${symbol} has won`)
-            incrementScore(symbol);
-            reset();
-        }
+    // document.getElementById("reset_btn").addEventListener("click", reset);
+    // document.getElementById("register_btn").addEventListener("click", register);
+    // document.getElementById("reset_btn_all").addEventListener("click", resetAll);
 
-        if(checkforTie(coArray)){
-            alert("no body won it was a Tie!")
-        }
-        
-    }
-);
-}
 }
 
 

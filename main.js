@@ -1,5 +1,3 @@
-
-import './modules/Games/tstyle.css'
 import './style.css'
 import javascriptLogo from './javascript.svg'
 import { setupCounter } from './counter.js'
@@ -7,7 +5,7 @@ import {main_page} from './modules/main_page.js'
 // import {projects_page} from './modules/projects_page.js'
 import {login_page} from './modules/login_page.js'
 import {board} from './modules/Games/ticktakto.js'
-import { RunGame } from './modules/Games/game_logic'
+import { RunGame} from './modules/Games/game_logic'
 
 let loggedIn = false;
 
@@ -18,11 +16,6 @@ let loggedIn = false;
 // }
 
 
-function f(){
-  
-
-}
-
 
 document.querySelector('#app').innerHTML = board.outerHTML;
 RunGame();
@@ -30,15 +23,16 @@ RunGame();
 
 
 
-// let button = document.createElement('button');
 
-// button.addEventListener("click", () => {
-//   document.querySelector('#app').innerHTML = login_page.outerHTML;
-// })
+let button = document.createElement('button');
+
+button.addEventListener("click", () => {
+    document.querySelector('#app').innerHTML = login_page.outerHTML;
+})
 
 
 
-// document.querySelector('#app').appendChild(button);
+document.querySelector('#app').append(button);
 
 
 
